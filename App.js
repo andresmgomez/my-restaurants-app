@@ -1,26 +1,28 @@
-import * as React from 'react';
-
+import { createContext, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import { View, SafeAreaView } from 'react-native';
-// import { StatusBar } from 'expo-status-bar';
+
 import Home from './src/screens/Home';
 import Details from './src/screens/Details';
-// import styles from './src/styles/index';
 
 const Stack = createNativeStackNavigator();
+export const LocalPlaceContext = createContext(null);
 
 export default function App() {
+	const [localPlace, setLocalPlace] = useState();
 	return (
-		<NavigationContainer>
-			<Stack.Navigator>
-				<Stack.Screen
-					name='Home'
-					component={Home}
-					options={{ title: 'Local Restaurants' }}
-				/>
-				<Stack.Screen name='Details' component={Details} />
-			</Stack.Navigator>
-		</NavigationContainer>
+		// To use context destructure the object props inside value
+		<LocalPlaceContext.Provider value={{ localPlace, setLocalPlace }}>
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen
+						name='Home'
+						component={Home}
+						options={{ title: 'Local Restaurants' }}
+					/>
+					<Stack.Screen name='Details' component={Details} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		</LocalPlaceContext.Provider>
 	);
 }

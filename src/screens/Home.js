@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import {
 	ActivityIndicator,
 	View,
@@ -7,6 +7,8 @@ import {
 	TouchableOpacity,
 	StatusBar,
 } from 'react-native';
+
+import { LocalPlaceContext } from '../../App';
 import RestaurantCard from '../components/Restaurant/RestaurantCard';
 import styles from '../styles/index';
 
@@ -16,6 +18,7 @@ const foodBackground = {
 
 export default function Home({ navigation }) {
 	const [places, setPlaces] = useState();
+	const { setLocalPlace } = useContext(LocalPlaceContext);
 
 	// useEffect(() => {
 	// 	const getRestaurants = async () => {
@@ -36,6 +39,11 @@ export default function Home({ navigation }) {
 			.catch(err => console.error(err));
 	}, []);
 
+	const handleDetailPage = localPlace => {
+		setLocalPlace(localPlace);
+		navigation.navigate('Details');
+	};
+
 	return (
 		<View style={styles.container}>
 			<ImageBackground
@@ -52,7 +60,7 @@ export default function Home({ navigation }) {
 								<View style={styles.restaurantCard} key={place.id}>
 									<TouchableOpacity
 										key={place.id}
-										onPress={() => navigation.navigate('Details')}
+										onPress={() => handleDetailPage(place)}
 									>
 										<RestaurantCard place={place} styles={styles} />
 									</TouchableOpacity>
