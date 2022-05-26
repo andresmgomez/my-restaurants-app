@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Fragment, useState, useEffect } from 'react';
 import styles from './src/styles/index';
+import RestaurantCard from './src/components/Restaurant/RestaurantCard';
 
 const foodBackground = {
 	uri: 'https://png.pngtree.com/background/20210709/original/pngtree-food-western-food-steak-tomato-picture-image_941801.jpg',
@@ -39,19 +40,7 @@ export default function App() {
 					{places ? (
 						places?.map(place => {
 							return (
-								<Fragment key={place.id}>
-									<Text id={place.id} style={styles.foodPlaces} key={place.id}>
-										Restaurant: {place.name}
-									</Text>
-									<Image
-										source={{ uri: place.img }}
-										style={{
-											marginTop: 60,
-											width: '100%',
-											height: 100,
-										}}
-									/>
-								</Fragment>
+								<RestaurantCard key={place.id} place={place} styles={styles} />
 							);
 						})
 					) : (
