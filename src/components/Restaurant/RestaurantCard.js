@@ -3,20 +3,15 @@ import { View, Text, Image } from 'react-native';
 
 export default function RestaurantCard({ styles, place }) {
 	return (
-		<View style={styles.restaurantCard} key={place.id}>
-			<Text id={place.id} style={styles.foodPlaces} key={place.id}>
+		<View style={styles.foodPlaces} key={place.id}>
+			<Text id={place.id} style={styles.foodBold} key={place.id}>
 				{/* Restaurant Name */}
 				Restaurant: {place.name}
 			</Text>
 			{/* Restaurant Food Preview */}
-			<Image
-				source={{ uri: place.img }}
-				style={{
-					marginTop: 60,
-					width: '100%',
-					height: 100,
-				}}
-			/>
+			<Text style={styles.foodName}>Cuisine: {place.cuisine}</Text>
+			<Text style={styles.foodName}>Address: {place.address}</Text>
+			<Image style={styles.foodPicture} source={{ uri: place.img }} />
 		</View>
 	);
 }

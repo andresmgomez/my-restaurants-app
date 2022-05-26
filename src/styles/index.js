@@ -19,19 +19,31 @@ export default StyleSheet.create({
 		height: 190,
 		backgroundColor: 'black',
 		borderRadius: 25,
-		color: '#f5f5f5',
 	},
 	foodPlaces: {
 		position: 'relative',
 		color: '#f5f5f5',
-		textAlign: 'center',
-		top: '14%',
-		right: 0,
+		top: '9%',
+		left: 0,
 		fontSize: 22,
 		fontWeight: 'bold',
 		zIndex: 10,
 	},
-	restaurantName: {
+	foodPicture: {
+		marginTop: 10,
+		width: '100%',
+		height: 100,
+	},
+	foodBold: {
+		paddingLeft: 10,
+		paddingBottom: 7,
+		fontSize: 18,
+		fontWeight: 'bold',
+		color: 'white',
+	},
+	foodName: {
+		paddingLeft: 10,
+		fontSize: 16,
 		color: 'white',
 	},
 });

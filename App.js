@@ -40,7 +40,13 @@ export default function App() {
 					{places ? (
 						places?.map(place => {
 							return (
-								<RestaurantCard key={place.id} place={place} styles={styles} />
+								<View style={styles.restaurantCard}>
+									<RestaurantCard
+										key={place.id}
+										place={place}
+										styles={styles}
+									/>
+								</View>
 							);
 						})
 					) : (
