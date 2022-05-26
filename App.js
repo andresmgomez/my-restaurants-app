@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import {
-	StyleSheet,
 	Text,
 	View,
 	ImageBackground,
+	ScrollView,
 	Image,
 	ActivityIndicator,
 } from 'react-native';
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
+import styles from './src/styles/index';
 
-const image = {
+const foodBackground = {
 	uri: 'https://png.pngtree.com/background/20210709/original/pngtree-food-western-food-steak-tomato-picture-image_941801.jpg',
 };
 
@@ -21,7 +22,7 @@ export default function App() {
 				'https://my-first-firestore-st.web.app/restaurants/'
 			);
 			const places = await response.json();
-			console.log(places);
+			// console.log(places);
 			setPlaces(places);
 		};
 		getRestaurants();
@@ -30,59 +31,35 @@ export default function App() {
 		<View style={styles.container}>
 			<ImageBackground
 				resizeMode='cover'
-				source={image}
+				source={foodBackground}
 				style={styles.wideImage}
 			>
-				<Text>Let's show a list of restaurants</Text>
-				{places ? (
-					places?.map(place => {
-						return (
-							<>
-								<Text style={styles.foodPlaces} key={place.id}>
-									Restaurant: {place.name}
-								</Text>
-								<Image
-									source={{ uri: place.img }}
-									style={{
-										marginTop: 60,
-										width: '100%',
-										height: 100,
-									}}
-								/>
-							</>
-						);
-					})
-				) : (
-					<ActivityIndicator size='large' color='red' />
-				)}
+				<ScrollView>
+					<Text>Let's show a list of restaurants</Text>
+					{places ? (
+						places?.map(place => {
+							return (
+								<Fragment key={place.id}>
+									<Text id={place.id} style={styles.foodPlaces} key={place.id}>
+										Restaurant: {place.name}
+									</Text>
+									<Image
+										source={{ uri: place.img }}
+										style={{
+											marginTop: 60,
+											width: '100%',
+											height: 100,
+										}}
+									/>
+								</Fragment>
+							);
+						})
+					) : (
+						<ActivityIndicator size='large' color='red' />
+					)}
+				</ScrollView>
 				<StatusBar style='auto' />
 			</ImageBackground>
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: 'transparent',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	wideImage: {
-		width: '100%',
-		height: '100%',
-		zIndex: 9,
-	},
-	foodPlaces: {
-		position: 'relative',
-		marginTop: 10,
-		paddingTop: 10,
-		color: '#f5f5f5',
-		textAlign: 'center',
-		top: '6%',
-		right: 0,
-		fontSize: 22,
-		fontWeight: 'bold',
-		zIndex: 10,
-	},
-});
