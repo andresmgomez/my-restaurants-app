@@ -4,6 +4,7 @@ import {
 	View,
 	ImageBackground,
 	ScrollView,
+	TouchableOpacity,
 	StatusBar,
 } from 'react-native';
 import RestaurantCard from '../components/Restaurant/RestaurantCard';
@@ -13,7 +14,7 @@ const foodBackground = {
 	uri: 'https://png.pngtree.com/background/20210709/original/pngtree-food-western-food-steak-tomato-picture-image_941801.jpg',
 };
 
-export default function Home() {
+export default function Home({ navigation }) {
 	const [places, setPlaces] = useState();
 
 	// useEffect(() => {
@@ -49,7 +50,12 @@ export default function Home() {
 						places.map(place => {
 							return (
 								<View style={styles.restaurantCard} key={place.id}>
-									<RestaurantCard place={place} styles={styles} />
+									<TouchableOpacity
+										key={place.id}
+										onPress={() => navigation.navigate('Details')}
+									>
+										<RestaurantCard place={place} styles={styles} />
+									</TouchableOpacity>
 								</View>
 							);
 						})

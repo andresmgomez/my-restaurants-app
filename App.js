@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { View, SafeAreaView } from 'react-native';
 // import { StatusBar } from 'expo-status-bar';
 import Home from './src/screens/Home';
+import Details from './src/screens/Details';
 // import styles from './src/styles/index';
 
 const Stack = createNativeStackNavigator();
@@ -18,6 +19,7 @@ export default function App() {
 					component={Home}
 					options={{ title: 'Local Restaurants' }}
 				/>
+				<Stack.Screen name='Details' component={Details} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
