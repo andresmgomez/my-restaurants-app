@@ -3,8 +3,8 @@ import { View, Text, Image } from 'react-native';
 
 export default function RestaurantCard({ styles, place }) {
 	return (
-		<View style={styles.foodPlaces} key={place.id}>
-			<Text id={place.id} style={styles.foodBold} key={place.id}>
+		<View style={styles.foodPlaces}>
+			<Text style={styles.foodBold}>
 				{/* Restaurant Name */}
 				Restaurant: {place.name}
 			</Text>
